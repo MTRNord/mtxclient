@@ -1,6 +1,6 @@
 #pragma once
 
-#include <experimental/optional>
+#include <optional>
 #include <memory>
 #include <mutex>
 #include <thread>
@@ -66,8 +66,8 @@ public:
         //! Generate a new transaction id.
         std::string generate_txn_id() { return utils::random_token(32, false); }
 
-        using HeaderFields = std::experimental::optional<boost::beast::http::fields>;
-        using RequestErr   = std::experimental::optional<mtx::client::errors::ClientError>;
+        using HeaderFields = std::optional<boost::beast::http::fields>;
+        using RequestErr   = std::optional<mtx::client::errors::ClientError>;
 
         //! Perfom login.
         void login(const std::string &username,
