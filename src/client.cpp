@@ -229,7 +229,7 @@ Client::login(
   const std::string &user,
   const std::string &password,
   std::function<void(const mtx::responses::Login &response,
-                     std::experimental::optional<mtx::client::errors::ClientError>)> callback)
+                     std::optional<mtx::client::errors::ClientError>)> callback)
 {
         mtx::requests::Login req;
         req.user     = user;
@@ -240,7 +240,7 @@ Client::login(
           req,
           [_this = shared_from_this(),
            callback](const mtx::responses::Login &resp,
-                     std::experimental::optional<mtx::client::errors::ClientError> err) {
+                     std::optional<mtx::client::errors::ClientError> err) {
                   if (!err && resp.access_token.size()) {
                           _this->user_id_      = resp.user_id;
                           _this->device_id_    = resp.device_id;
@@ -254,7 +254,7 @@ Client::login(
 void
 Client::logout(
   std::function<void(const mtx::responses::Logout &response,
-                     std::experimental::optional<mtx::client::errors::ClientError>)> callback)
+                     std::optional<mtx::client::errors::ClientError>)> callback)
 {
         mtx::requests::Logout req;
 
@@ -263,7 +263,7 @@ Client::logout(
           req,
           [_this = shared_from_this(),
            callback](const mtx::responses::Logout &res,
-                     std::experimental::optional<mtx::client::errors::ClientError> err) {
+                     std::optional<mtx::client::errors::ClientError> err) {
                   if (!err) {
                           // Clear the now invalid access token when logout is successful
                           _this->access_token_.clear();
